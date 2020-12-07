@@ -9,11 +9,15 @@ repositories {
 }
 
 javafx {
-    version = "15.0.1"
+    version = "11.0.2"
     modules = ['javafx.controls', 'javafx.graphics']
 }
 
+
 mainClassName = 'tfpoo/biblioteca.Launcher'
+sourceCompatibility = 11
+targetCompatibility = 11
+
 
 def currentOS = org.gradle.internal.os.OperatingSystem.current()
 def platform
@@ -25,9 +29,10 @@ if (currentOS.isWindows()) {
     platform = 'mac'
 }
 dependencies {
-    compile "org.openjfx:javafx-base:15.0.1:win"
-    compile "org.openjfx:javafx-graphics:15.0.1:win"
-    compile "org.openjfx:javafx-controls:15.0.1:win"
+    implementation 'junit:junit:4.12'
+    compile "org.openjfx:javafx-base:11.0.2:win"
+    compile "org.openjfx:javafx-graphics:11.0.2:win"
+    compile "org.openjfx:javafx-controls:11.0.2:win"
 }
 
 jar {
@@ -40,10 +45,7 @@ jar {
 }
 
 jlink {
-    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
-    launcher {
-        name = 'tfpoo'
-    }
+
 }
 
 task createJar(type: Copy) {

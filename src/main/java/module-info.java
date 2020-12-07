@@ -1,7 +1,6 @@
-module  tfpoo {
+module tfpoo.main {
     requires javafx.graphics;
     requires javafx.controls;
+    requires java.base;
 
-    opens biblioteca.Lib to javafx.base;
-    exports biblioteca;
 }
