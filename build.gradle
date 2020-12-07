@@ -1,0 +1,53 @@
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+    id 'org.beryx.jlink' version '2.22.3'
+}
+
+repositories {
+    mavenCentral()
+}
+
+javafx {
+    version = "15.0.1"
+    modules = ['javafx.controls', 'javafx.graphics']
+}
+
+mainClassName = 'tfpoo/biblioteca.Launcher'
+
+def currentOS = org.gradle.internal.os.OperatingSystem.current()
+def platform
+if (currentOS.isWindows()) {
+    platform = 'win'
+} else if (currentOS.isLinux()) {
+    platform = 'linux'
+} else if (currentOS.isMacOsX()) {
+    platform = 'mac'
+}
+dependencies {
+    compile "org.openjfx:javafx-base:15.0.1:win"
+    compile "org.openjfx:javafx-graphics:15.0.1:win"
+    compile "org.openjfx:javafx-controls:15.0.1:win"
+}
+
+jar {
+    inputs.property("moduleName", moduleName)
+    manifest {
+        attributes (
+           'Main-Class': 'biblioteca.Launcher'
+        )
+    }
+}
+
+jlink {
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher {
+        name = 'tfpoo'
+    }
+}
+
+task createJar(type: Copy) {
+    dependsOn 'jar'
+    into "$buildDir/libs"
+    from configurations.runtime
+}
