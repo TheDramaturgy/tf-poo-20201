@@ -1,4 +1,5 @@
 plugins {
+    id 'java'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.9'
     id 'org.beryx.jlink' version '2.22.3'
@@ -9,15 +10,21 @@ repositories {
 }
 
 javafx {
-    version = "11.0.2"
-    modules = ['javafx.controls', 'javafx.graphics']
+    version = "15.0.1"
+    modules = ['javafx.controls', 'javafx.graphics', 'javafx.fxml']
 }
 
+dependencies {
+    testCompile 'junit:junit:4.12'
+    compile 'junit:junit:4.12'
+}
 
-mainClassName = 'tfpoo/biblioteca.Launcher'
-sourceCompatibility = 11
-targetCompatibility = 11
+mainClassName = 'tfpoo.main/biblioteca.Launcher'
 
+compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
 
 def currentOS = org.gradle.internal.os.OperatingSystem.current()
 def platform
@@ -30,13 +37,12 @@ if (currentOS.isWindows()) {
 }
 dependencies {
     implementation 'junit:junit:4.12'
-    compile "org.openjfx:javafx-base:11.0.2:win"
-    compile "org.openjfx:javafx-graphics:11.0.2:win"
-    compile "org.openjfx:javafx-controls:11.0.2:win"
+    compile "org.openjfx:javafx-base:15.0.1:win"
+    compile "org.openjfx:javafx-graphics:15.0.1:win"
+    compile "org.openjfx:javafx-controls:15.0.1:win"
 }
 
 jar {
-    inputs.property("moduleName", moduleName)
     manifest {
         attributes (
            'Main-Class': 'biblioteca.Launcher'

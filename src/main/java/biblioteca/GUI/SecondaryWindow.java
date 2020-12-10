@@ -619,7 +619,8 @@ public class SecondaryWindow {
                                 tfNumero.getText().equals("") || tfDiretor.getText().equals("")) {
                             showWarning("Todos os campos devem ser preenchidos!");
                         } else {
-                            newItem = new Jornal(tfNome.getText(), dpDataJornal.getValue(),
+                            newItem = new Jornal(tfNome.getText(),
+                                    dpDataJornal.getConverter().fromString(dpDataJornal.getEditor().getText()),
                                     Integer.parseInt(tfNumero.getText()), tfDiretor.getText());
                             biblioteca.addItem(newItem);
                             inventario.refresh();

@@ -14,6 +14,7 @@ public class Options {
     public static final String EQUIPE_LOCATION = "equipe.txt";
     public static final String ITEM_LIMIT = "FIM_SAVE";
     public static final String CLIENT_LIMIT = "ITEMS";
+    public static final String DELIMITADOR = " -&&- ";
     public static final String LIVRO = "LIVRO";
     public static final String REVISTA = "REVISTA";
     public static final String JORNAL = "JORNAL";

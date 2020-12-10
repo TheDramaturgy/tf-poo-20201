@@ -73,7 +73,7 @@ public final class SceneManager {
         BorderPane mainBorder = ComponentCreator.createMainBorderPane(stage, clientes, inventario, biblioteca);
 
         Scene cena = new Scene(mainBorder, 1000, 800);
-        cena.getStylesheets().add("biblioteca/GUI/stylesheet.css");
+        //cena.getStylesheets().add("biblioteca/GUI/stylesheet.css");
         return cena;
     }
 

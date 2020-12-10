@@ -1,5 +1,6 @@
 package biblioteca.Lib;
 
+import biblioteca.Dados.Options;
 import biblioteca.Dados.Status;
 
 import java.time.LocalDate;
@@ -33,9 +34,9 @@ public class Jornal extends Item {
 
     @Override
     public String toString() {
-        return  super.toString() +
-                data + ' ' +
-                numero + ' ' +
+        return  super.toString() + Options.DELIMITADOR +
+                data + Options.DELIMITADOR +
+                numero + Options.DELIMITADOR +
                 diretor;
     }
 }

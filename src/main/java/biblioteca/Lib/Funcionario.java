@@ -23,7 +23,5 @@ public class Funcionario {
     public void setId(int id) { this.id = id; }
 
     @Override
-    public String toString() {
-        return nome + ' ' + id;
-    }
+    public String toString() { return nome + Options.DELIMITADOR + id; }
 }

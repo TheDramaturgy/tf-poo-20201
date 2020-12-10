@@ -1,3 +1,3 @@
 #!/bin/sh
 DIR="${0%/*}"
-"$DIR/java"  -p "$DIR/../app" -m tfpoo/biblioteca.Launcher  "$@"
+"$DIR/java"  -p "$DIR/../app" -m tfpoo.main/biblioteca.Launcher  "$@"

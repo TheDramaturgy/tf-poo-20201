@@ -7,6 +7,7 @@ import biblioteca.Dados.Status;
 import javafx.collections.ObservableList;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
@@ -22,41 +23,43 @@ public class IOFunctions {
             return;
         }
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
 
         String s = br.readLine();
         if (s != null) {
-            Scanner scanner = new Scanner(s);
-            Options.setClienteNewId(Integer.parseInt(scanner.next()));
-            Options.setItemNewId(Integer.parseInt(scanner.next()));
-            scanner.close();
+            Scanner scan = new Scanner(s);
+            Options.setClienteNewId(scan.nextInt());
+            Options.setItemNewId(scan.nextInt());
+            scan.close();
         } else {
             return;
         }
+
         // INICIALIZA CLIENTES
         for (s = br.readLine(); !s.equals(Options.CLIENT_LIMIT); s = br.readLine()) {
-            Scanner scan = new Scanner(s);
+            Scanner scan = new Scanner(s).useDelimiter("\\s*"+Options.DELIMITADOR+"\\s*");
             biblioteca.addCliente(new Cliente(
                     scan.next(),
-                    Integer.parseInt(scan.next()),
-                    Integer.parseInt(scan.next()),
-                    Integer.parseInt(scan.next())
+                    scan.nextInt(),
+                    scan.nextInt(),
+                    scan.nextInt()
             ));
+            scan.close();
         }
 
         // INICIALIZA INVENTARIO
         for (s = br.readLine(); !s.equals(Options.ITEM_LIMIT); s = br.readLine()) {
-            Scanner scan = new Scanner(s);
+            Scanner scan = new Scanner(s).useDelimiter("\\s*"+Options.DELIMITADOR+"\\s*");
             String tipo = scan.next();
             int i = -1;
             if (tipo.equals(Options.LIVRO)) {
                 biblioteca.addItem(new Livro(
                         scan.next(),
-                        Integer.parseInt(scan.next()),
+                        scan.nextInt(),
                         tipo,
                         Status.parseStatus(scan.next()),
-                        ((i = Integer.parseInt(scan.next())) != -1 ? encontrarCliente(biblioteca.getClientes(), i) : null),
-                        ((i = Integer.parseInt(scan.next())) != -1 ? encontrarFuncionario(funcionarios, i) : null),
+                        ((i = scan.nextInt()) != -1 ? encontrarCliente(biblioteca.getClientes(), i) : null),
+                        ((i = scan.nextInt()) != -1 ? encontrarFuncionario(funcionarios, i) : null),
                         scan.next(),
                         scan.next(),
                         scan.next()
@@ -64,28 +67,29 @@ public class IOFunctions {
             } else if (tipo.equals(Options.REVISTA)) {
                 biblioteca.addItem(new Revista(
                         scan.next(),
-                        Integer.parseInt(scan.next()),
+                        scan.nextInt(),
                         tipo,
                         Status.parseStatus(scan.next()),
-                        ((i = Integer.parseInt(scan.next())) != -1 ? encontrarCliente(biblioteca.getClientes(), i) : null),
-                        ((i = Integer.parseInt(scan.next())) != -1 ? encontrarFuncionario(funcionarios, i) : null),
+                        ((i = scan.nextInt()) != -1 ? encontrarCliente(biblioteca.getClientes(), i) : null),
+                        ((i = scan.nextInt()) != -1 ? encontrarFuncionario(funcionarios, i) : null),
                         LocalDate.parse(scan.next()),
-                        Integer.parseInt(scan.next()),
+                        scan.nextInt(),
                         scan.next()
                 ));
             } else if (tipo.equals(Options.JORNAL)) {
                 biblioteca.addItem(new Jornal(
                         scan.next(),
-                        Integer.parseInt(scan.next()),
+                        scan.nextInt(),
                         tipo,
                         Status.parseStatus(scan.next()),
-                        ((i = Integer.parseInt(scan.next())) != -1 ? encontrarCliente(biblioteca.getClientes(), i) : null),
-                        ((i = Integer.parseInt(scan.next())) != -1 ? encontrarFuncionario(funcionarios, i) : null),
+                        ((i = scan.nextInt()) != -1 ? encontrarCliente(biblioteca.getClientes(), i) : null),
+                        ((i = scan.nextInt()) != -1 ? encontrarFuncionario(funcionarios, i) : null),
                         LocalDate.parse(scan.next()),
-                        Integer.parseInt(scan.next()),
+                        scan.nextInt(),
                         scan.next()
                 ));
             }
+            scan.close();
         }
 
         br.close();
@@ -94,7 +98,7 @@ public class IOFunctions {
     public static void salvarRegistro(Biblioteca biblioteca) throws FileNotFoundException {
         OutputStream os = new FileOutputStream(Options.SAVED_LOCATION);
 
-        PrintWriter pw = new PrintWriter(new OutputStreamWriter(os));
+        PrintWriter pw = new PrintWriter(new OutputStreamWriter(os, StandardCharsets.UTF_8));
         String save = new String();
         save += String.valueOf(Options.getClienteNewId()) + ' ' +
                 String.valueOf(Options.getItemNewId()) + '\n';
@@ -131,17 +135,18 @@ public class IOFunctions {
             catch (FileNotFoundException e) {
                 return;
             }
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
             String s = br.readLine();
             if(s != null) {
                 Scanner scan = new Scanner(s);
-                Options.setFuncionarioNewId(Integer.parseInt(scan.next()));
+                Options.setFuncionarioNewId(scan.nextInt());
                 for (s = br.readLine(); s != null; s = br.readLine()) {
-                    scan = new Scanner(s);
+                    scan = new Scanner(s).useDelimiter("\\s*"+Options.DELIMITADOR+"\\s*");
                     dadosEquipe.add(new Funcionario(
                             scan.next(),
-                            Integer.parseInt(scan.next())
+                            scan.nextInt()
                     ));
+                    scan.close();
                 }
                 br.close();
             } else {
@@ -155,7 +160,7 @@ public class IOFunctions {
 
     public static void salvarDadosEquipe(ObservableList<Funcionario> dadosEquipe) throws FileNotFoundException {
         OutputStream os = new FileOutputStream(Options.EQUIPE_LOCATION);
-        PrintWriter pw = new PrintWriter(new OutputStreamWriter(os));
+        PrintWriter pw = new PrintWriter(new OutputStreamWriter(os, StandardCharsets.UTF_8));
         String save = new String();
         save += String.valueOf(Options.getFuncionarioNewId()) + '\n';
         for (Funcionario f : dadosEquipe) {

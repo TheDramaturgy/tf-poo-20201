@@ -51,11 +51,11 @@ public abstract class Item {
         else cliente = String.valueOf(clienteEmPosse.getId());
         if (ultimoAEditar == null) funcionario = "-1";
         else funcionario = String.valueOf(ultimoAEditar.getId());
-        return  tipo + ' ' +
-                nome + ' ' +
-                id + ' ' +
-                String.valueOf(disponibilidade) + ' ' +
-                cliente + ' ' +
-                funcionario + ' ';
+        return  tipo + Options.DELIMITADOR +
+                nome + Options.DELIMITADOR +
+                id + Options.DELIMITADOR +
+                String.valueOf(disponibilidade) + Options.DELIMITADOR +
+                cliente + Options.DELIMITADOR +
+                funcionario;
     }
 }

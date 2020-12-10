@@ -61,9 +61,9 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return  nome + ' ' +
-                id + ' ' +
-                livrosEmprestados + ' ' +
+        return  nome + Options.DELIMITADOR +
+                id + Options.DELIMITADOR +
+                livrosEmprestados + Options.DELIMITADOR +
                 livrosReservados;
     }
 

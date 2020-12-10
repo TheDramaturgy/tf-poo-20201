@@ -1,5 +1,6 @@
 package biblioteca.Lib;
 
+import biblioteca.Dados.Options;
 import biblioteca.Dados.Status;
 
 public class Livro extends Item {
@@ -33,9 +34,9 @@ public class Livro extends Item {
 
     @Override
     public String toString() {
-        return  super.toString() +
-                isbn + ' ' +
-                autor + ' ' +
+        return  super.toString() + Options.DELIMITADOR +
+                isbn + Options.DELIMITADOR +
+                autor + Options.DELIMITADOR +
                 editora;
     }
 }
