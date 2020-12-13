@@ -1,0 +1,1 @@
+jre_image\bin\java -jar tfpoo.jar

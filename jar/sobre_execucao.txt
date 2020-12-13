@@ -1,0 +1,5 @@
+    Como utilizamos a framework JavaFX, seria necessário a sua instalação para executar o arquivo jar
+para, para evitar problemas de compatibilidade de versão do java e tornar o processo de execução
+mais simples, criamos uma "java runtime image" customizada com o uso da ferramente JLink.
+    Basta executar o jar com a aplicação java em "...\jre_image\bin\java" ou, para facilitar,
+executar o arquivo "executar_jar.bat".
