@@ -10,7 +10,7 @@ public class Jornal extends Item {
     private int numero;
     private String diretor;
 
-    protected Jornal(String nome, int id, String tipo, Status disponibilidade, Cliente clienteEmPosse, Funcionario ultimoAEditar, LocalDate data, int numero, String diretor) {
+    public Jornal(String nome, int id, String tipo, Status disponibilidade, Cliente clienteEmPosse, Funcionario ultimoAEditar, LocalDate data, int numero, String diretor) {
         super(nome, id, tipo, disponibilidade, clienteEmPosse, ultimoAEditar);
         this.data = data;
         this.numero = numero;

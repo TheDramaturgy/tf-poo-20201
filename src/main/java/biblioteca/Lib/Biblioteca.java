@@ -16,6 +16,7 @@ public class Biblioteca {
     public void addItem(Item item) { inventario.add(item); }
 
     public List<Cliente> getClientes() { return clientes; }
+
     public void excluirCliente(Cliente cliente) { clientes.remove(cliente); }
     public void addCliente(Cliente cliente) { clientes.add(cliente); }
 

@@ -10,7 +10,7 @@ public class Livro extends Item {
 
     public Livro() { }
 
-    protected Livro(String nome, int id, String tipo, Status disponibilidade, Cliente clienteEmPosse, Funcionario ultimoAEditar, String isbn, String autor, String editora) {
+    public Livro(String nome, int id, String tipo, Status disponibilidade, Cliente clienteEmPosse, Funcionario ultimoAEditar, String isbn, String autor, String editora) {
         super(nome, id, tipo, disponibilidade, clienteEmPosse, ultimoAEditar);
         this.isbn = isbn;
         this.autor = autor;

@@ -1,6 +1,7 @@
 package biblioteca.GUI;
 
 import biblioteca.Exceptions.InvalidItemTypeException;
+import biblioteca.IOFunctions;
 import biblioteca.Lib.*;
 import biblioteca.Dados.Options;
 import javafx.beans.binding.Bindings;

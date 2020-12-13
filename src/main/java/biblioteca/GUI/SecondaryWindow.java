@@ -3,6 +3,7 @@ package biblioteca.GUI;
 import biblioteca.Exceptions.ClientLimitExceededException;
 import biblioteca.Exceptions.IdNotFoundException;
 import biblioteca.Exceptions.InvalidItemTypeException;
+import biblioteca.IOFunctions;
 import biblioteca.Lib.*;
 import biblioteca.Dados.Options;
 import biblioteca.Dados.Status;
