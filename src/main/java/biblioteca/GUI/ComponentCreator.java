@@ -1,6 +1,7 @@
 package biblioteca.GUI;
 
 import biblioteca.Exceptions.InvalidItemTypeException;
+import biblioteca.Exceptions.InvalidOperationException;
 import biblioteca.IOFunctions;
 import biblioteca.Lib.*;
 import biblioteca.Dados.Options;
@@ -223,7 +224,8 @@ public class ComponentCreator {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Item item = inventario.getSelectionModel().getSelectedItem();
-                biblioteca.excluirItem(item);
+                try { biblioteca.excluirItem(item); }
+                catch (InvalidOperationException e) { SecondaryWindow.showError(e.getMessage()); }
                 inventario.refresh();
             }
         });

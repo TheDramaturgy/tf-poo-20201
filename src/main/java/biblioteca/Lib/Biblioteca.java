@@ -3,6 +3,7 @@ package biblioteca.Lib;
 import biblioteca.Exceptions.ClientLimitExceededException;
 import biblioteca.Exceptions.IdNotFoundException;
 import biblioteca.Dados.Status;
+import biblioteca.Exceptions.InvalidOperationException;
 import javafx.collections.FXCollections;
 import java.util.List;
 
@@ -12,7 +13,12 @@ public class Biblioteca {
     private List<Cliente> clientes = FXCollections.observableArrayList();
 
     public List<Item> getInventario() { return inventario; }
-    public void excluirItem(Item item) { inventario.remove(item); }
+    public void excluirItem(Item item) throws InvalidOperationException {
+        if (item.getDisponibilidade() == Status.DISPONIVEL) { inventario.remove(item); }
+        else {
+            throw new InvalidOperationException("O item não pôde ser deletado, pois não está DISPONIVEL");
+        }
+    }
     public void addItem(Item item) { inventario.add(item); }
 
     public List<Cliente> getClientes() { return clientes; }
