@@ -1,7 +1,7 @@
 # tf-poo-20201
 Trabalho final de POO
 
-| Grupo 1 |
+Grupo 1
 | Nome | Matricula |
 | ------ | ------ |
 | Arthur Cavalcante de Andrade | 201801479 |
